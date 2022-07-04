@@ -1,5 +1,7 @@
 import 'package:bored_api/home/home.dart';
 import 'package:bored_api/services/boredService.dart';
+import 'package:bored_api/services/weatherService.dart';
+import 'package:bored_api/weather/weather.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -23,8 +25,11 @@ class MyApp extends StatelessWidget {
           RepositoryProvider(
             create: (context) => BoredService(),
           ),
+          RepositoryProvider(
+            create: (context) => WeatherService(),
+          ),
         ],
-        child: HomePage(),
+        child: WeatherPage(),
       ),
     );
   }
