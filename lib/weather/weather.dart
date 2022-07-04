@@ -1,6 +1,7 @@
 import 'package:bored_api/data/models/WeatherModel.dart';
 import 'package:bored_api/services/weatherService.dart';
 import 'package:bored_api/weather/bloc/weather_bloc.dart';
+import 'package:bored_api/weather/widgets/city_input_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -11,7 +12,7 @@ class WeatherPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Weather'),
+        title: const Text('Weather'),
         centerTitle: true,
       ),
       body: BlocProvider(
@@ -20,10 +21,11 @@ class WeatherPage extends StatelessWidget {
         )..add(LoadApiEvent()),
         child: BlocBuilder<WeatherBloc, WeatherState>(
           builder: (context, state) {
-            if (state is WeatherLoadingState) {
+            if (state is WeatherInitialState) {
+              return _buildInitialInput();
+            } else if (state is WeatherLoadingState) {
               return _buildLoadingState();
-            }
-            if (state is WeatherLoadedState) {
+            } else if (state is WeatherLoadedState) {
               return _buildLoadedWidgetWeatherState(
                   context, state.weatherModel);
             }
@@ -31,6 +33,12 @@ class WeatherPage extends StatelessWidget {
           },
         ),
       ),
+    );
+  }
+
+  Widget _buildInitialInput() {
+    return const Center(
+      child: CityInputField(),
     );
   }
 
@@ -50,6 +58,7 @@ class WeatherPage extends StatelessWidget {
             Text("Temperatura: ${weatherModel.main.temp}"),
             Text("Temperatura Máxima: ${weatherModel.main.tempMax}"),
             Text("Temperatura Mínima: ${weatherModel.main.tempMin}"),
+            const CityInputField(),
           ],
         ),
       ),

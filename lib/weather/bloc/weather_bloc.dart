@@ -9,6 +9,7 @@ part 'weather_event.dart';
 part 'weather_state.dart';
 
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
+  WeatherState get initialState => WeatherInitialState();
 
   final WeatherService _weatherService;
 
