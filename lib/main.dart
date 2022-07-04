@@ -1,5 +1,3 @@
-import 'package:bored_api/home/home.dart';
-import 'package:bored_api/services/boredService.dart';
 import 'package:bored_api/services/weatherService.dart';
 import 'package:bored_api/weather/weather.dart';
 import 'package:flutter/material.dart';
@@ -22,9 +20,6 @@ class MyApp extends StatelessWidget {
       ),
       home: MultiRepositoryProvider(
         providers: [
-          RepositoryProvider(
-            create: (context) => BoredService(),
-          ),
           RepositoryProvider(
             create: (context) => WeatherService(),
           ),
