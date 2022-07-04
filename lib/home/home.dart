@@ -8,15 +8,15 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => HomeBloc(
-        RepositoryProvider.of<BoredService>(context),
-      )..add(LoadApiEvent()),
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text('Bored'),
-        ),
-        body: BlocBuilder<HomeBloc, HomeState>(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Bored'),
+      ),
+      body: BlocProvider(
+        create: (context) => HomeBloc(
+          RepositoryProvider.of<BoredService>(context),
+        )..add(LoadApiEvent()),
+        child: BlocBuilder<HomeBloc, HomeState>(
           builder: (context, state) {
             if (state is HomeLoadingState) {
               return const Center(
