@@ -13,20 +13,29 @@ class WeatherPage extends StatelessWidget {
         title: Text('Weather'),
         centerTitle: true,
       ),
-      body: BlocProvider(
-        create: (context) => WeatherBloc(
-          RepositoryProvider.of<WeatherService>(context),
-        )..add(LoadApiEvent()),
-        child: BlocBuilder<WeatherBloc, WeatherState>(
-          builder: (context, state) {
-            if (state is WeatherLoadingState) {
-              return _buildLoadingState();
-            }
-            if (state is WeatherLoadedState) {
-              return _buildLoadedWidgetWeatherState();
-            }
-            return Container();
-          },
+      body: Center(
+        child: Column(
+          children: [
+            Container(
+              child: BlocProvider(
+                create: (context) => WeatherBloc(
+                  RepositoryProvider.of<WeatherService>(context),
+                )..add(LoadApiEvent()),
+                child: BlocBuilder<WeatherBloc, WeatherState>(
+                  builder: (context, state) {
+                    if (state is WeatherLoadingState) {
+                      return _buildLoadingState();
+                    }
+                    if (state is WeatherLoadedState) {
+                      return _buildLoadedWidgetWeatherState();
+                    }
+                    return Container();
+                  },
+                ),
+              ),
+            ),
+
+          ],
         ),
       ),
     );
