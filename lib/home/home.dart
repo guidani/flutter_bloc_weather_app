@@ -26,9 +26,9 @@ class HomePage extends StatelessWidget {
             if (state is HomeLoadedState) {
               return Column(
                 children: [
-                  Text(state.activityName),
-                  Text(state.activityType),
-                  Text(state.participants.toString()),
+                  Text(state.boredActivityModel.activity),
+                  Text(state.boredActivityModel.type),
+                  Text(state.boredActivityModel.participants.toString()),
                   ElevatedButton(
                     onPressed: () =>
                         BlocProvider.of<HomeBloc>(context).add(LoadApiEvent()),

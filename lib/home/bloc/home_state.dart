@@ -10,13 +10,12 @@ class HomeLoadingState extends HomeState {
 }
 
 class HomeLoadedState extends HomeState{
-  final String activityName;
-  final String activityType;
-  final int participants;
 
-  HomeLoadedState(this.activityName, this.activityType, this.participants);
+  final BoredActivityModel boredActivityModel;
+
+  HomeLoadedState(this.boredActivityModel);
 
   @override
   // TODO: implement props
-  List<Object?> get props => [activityName, activityType, participants];
+  List<Object?> get props => [boredActivityModel];
 }
