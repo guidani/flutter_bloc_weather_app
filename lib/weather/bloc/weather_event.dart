@@ -8,5 +8,4 @@ class LoadApiEvent extends WeatherEvent{
   @override
   // TODO: implement props
   List<Object?> get props => [];
-
 }
